@@ -1,4 +1,4 @@
-package DesafioOO;
+package DesafiosOO.DesafioComposicao;
 
 public class Item {
 
