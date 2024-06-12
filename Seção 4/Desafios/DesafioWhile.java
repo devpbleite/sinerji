@@ -21,7 +21,11 @@ public class DesafioWhile {
       }
     }
 
-    System.out.println("Média: " + (total / quantidadeNotas));
+    if (quantidadeNotas > 0) {
+      System.out.println("Média: " + (total / quantidadeNotas));
+    } else {
+      System.out.println("Nenhuma nota válida foi inserida.");
+    }
 
     s.close();
 

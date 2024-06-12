@@ -16,7 +16,7 @@ public class Filtro {
         new Produto("Cafeteira", 250.00, 50.0, 0));
 
     Predicate<Produto> descontoMaiorQue30 = p -> p.getDesconto() >= 30.0;
-    Predicate<Produto> freteGratis = f -> f.isFreteGratis() == 0.0;
+    Predicate<Produto> freteGratis = Produto::isFreteGratis;
 
     Function<Produto, String> formatacaoProduto = p -> String.format("%s - R$ %.2f - super promoção", p.getNome(),
         p.getPreco());

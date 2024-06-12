@@ -23,7 +23,7 @@ public class Produto {
     return desconto;
   }
 
-  public double isFreteGratis() {
-    return frete;
+  public boolean isFreteGratis() {
+    return frete == 0;
   }
 }
