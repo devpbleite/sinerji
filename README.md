@@ -1,3 +1,3 @@
-### Sinerji Gestão e Sistemas.
+# Sinerji Gestão e Sistemas.
 
-# Repositório dedicado as soluções do treinamento Sinerji.
+### Repositório dedicado as soluções do treinamento Sinerji.
