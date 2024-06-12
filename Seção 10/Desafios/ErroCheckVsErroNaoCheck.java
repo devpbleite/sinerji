@@ -1,4 +1,4 @@
-public class CheckVsNaoCheck {
+public class ErroCheckVsErroNaoCheck {
 
   public static void main(String[] args) {
 
