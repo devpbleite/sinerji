@@ -34,6 +34,7 @@ public class Produto1 {
     this.desconto = desconto;
   }
 
+  @Override
   public String toString() {
     return "Produto1{" + "nome='" + nome + '\'' + ", preco=" + preco +
         '}';
