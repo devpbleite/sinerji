@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function OrderDetails({ itemsInBag }) {
+  //Define a quantidade total de itens selecionados
   function calculateTotal() {
     let total = 0;
     itemsInBag.forEach((item) => (total += item.price * item.quantity));
