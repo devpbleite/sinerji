@@ -1,17 +1,16 @@
-import Filter from '../components/Filter.jsx';
-import TodosList from '../components/TodosList.jsx';
+import Filter from "../components/Filter.jsx";
+import TodosList from "../components/TodosList.jsx";
 
 function Home() {
-
-    return (
+  return (
     <>
-        <div className="container">
-            <Filter />
-        
-            <TodosList />
-        </div>
+      <div className="container">
+        <Filter />
+
+        <TodosList />
+      </div>
     </>
-    )
-  }
-  
-  export default Home
+  );
+}
+
+export default Home;
