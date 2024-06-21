@@ -1,4 +1,4 @@
-import Filter from "../components/Filter.jsx";
+import Filter from "../components/Filter/Filter.jsx";
 import TodosList from "../components/TodosList.jsx";
 
 function Home() {
