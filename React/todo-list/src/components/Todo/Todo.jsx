@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TodosContext } from "../../TodosContext.js";
+import { TodosContext } from "../../TodosContext.jsx";
 import { IoTrashOutline } from "react-icons/io5";
 import "./Todo.scss";
 
