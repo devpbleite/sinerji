@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { TodosContext } from "../../TodosContext.jsx";
+import { useTodos } from "../../TodosContext.jsx";
 import { IoTrashOutline } from "react-icons/io5";
 import "./Todo.scss";
 
 export default function Todo({ todo }) {
-  const store = useContext(TodosContext);
+  const store = useTodos();
 
   return (
     <div className={`todo ${todo.isDone ? "done" : ""}`}>
