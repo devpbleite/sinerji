@@ -6,9 +6,11 @@ export default function TodosList() {
 
   return (
     <div className="todos">
-      {store.todos.map((todo) => (
-        <Todo key={todo.id} todo={todo} />
-      ))}
+      {store.filteredTodos().length
+        ? store
+            .filteredTodos()
+            .map((todo) => <Todo key={todo.id} todo={todo} />)
+        : "No to-do found. Try clearing the filter or adding a new one."}
     </div>
   );
 }
