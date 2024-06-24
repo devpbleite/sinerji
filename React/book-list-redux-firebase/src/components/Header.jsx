@@ -1,6 +1,24 @@
 import { NavLink } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/config.js";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/usersSlice.js";
 
 export default function Header({ pageTitle }) {
+  const dispatch = useDispatch();
+
+  function handleSignOut() {
+    if (window.confirm("Are you sure you want to log out?")) {
+      signOut(auth)
+        .then(() => {
+          dispatch(setUser(null));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
   return (
     <>
       <h1>{pageTitle}</h1>
@@ -13,6 +31,10 @@ export default function Header({ pageTitle }) {
         <NavLink to="/add-book">
           <button className="btn">Add Book +</button>
         </NavLink>
+
+        <button onClick={handleSignOut} className="btn transparent">
+          Logout
+        </button>
       </div>
     </>
   );

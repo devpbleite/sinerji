@@ -7,7 +7,6 @@ export default function AddBookPage() {
   const pageTitle = "Add Book";
 
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   function handleAddBook(e) {
