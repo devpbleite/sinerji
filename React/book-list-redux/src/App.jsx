@@ -10,7 +10,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<BooksPage />} />
           <Route path="/add-book" element={<AddBookPage />} />
-          <Route path="/books/:id" element={<SingleBookPage />} />
+          <Route path="/book/:id" element={<SingleBookPage />} />
         </Routes>
       </BrowserRouter>
     </>

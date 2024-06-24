@@ -3,6 +3,11 @@ import Header from "../components/Header.jsx";
 export default function AddBookPage() {
   const pageTitle = "Add Book";
 
+  function handleAddBook(e) {
+    e.preventDefault();
+    alert("Book added!");
+  }
+
   return (
     <>
       <div className="container">
@@ -32,7 +37,9 @@ export default function AddBookPage() {
             />
           </div>
 
-          <button className="btn btn-block">Save Book</button>
+          <button onClick={(e) => handleAddBook(e)} className="btn btn-block">
+            Save Book
+          </button>
         </form>
       </div>
     </>
