@@ -1,11 +1,21 @@
 import Book from "../components/Book.jsx";
 import Header from "../components/Header.jsx";
-import { useSelector } from "react-redux";
-import { selectBooks } from "../store/booksSlice.js";
+import { useSelector, useDispatch } from "react-redux";
+import { selectBooks, fetchBooks } from "../store/booksSlice.js";
+import { useEffect } from "react";
 
 export default function BooksPage() {
-  const books = useSelector(selectBooks);
+  const dispatch = useDispatch();
+  const books = useSelector(selectBooks).books;
   const pageTitle = "📖 Book List with React Router & Redux Toolkit";
+
+  const bookStatus = useSelector(selectBooks).status;
+
+  useEffect(() => {
+    if (bookStatus === "idle") {
+      dispatch(fetchBooks());
+    }
+  }, []);
 
   return (
     <>

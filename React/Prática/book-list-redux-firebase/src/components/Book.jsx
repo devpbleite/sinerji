@@ -5,9 +5,9 @@ import { toggleRead } from "../store/booksSlice.js";
 export default function Book({ book }) {
   const dispatch = useDispatch();
 
-  function handleToggleRead(e, id) {
+  function handleToggleRead(e, id, isRead) {
     e.preventDefault();
-    dispatch(toggleRead(id));
+    dispatch(toggleRead({ id, isRead }));
   }
 
   return (
@@ -25,7 +25,7 @@ export default function Book({ book }) {
 
             <button
               onClick={(e) => {
-                handleToggleRead(e, book.id);
+                handleToggleRead(e, book.id, book.isRead);
               }}
               className={book.isRead ? "isRead" : ""}
             >

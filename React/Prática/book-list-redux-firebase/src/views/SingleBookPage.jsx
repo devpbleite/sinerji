@@ -13,7 +13,7 @@ export default function SingleBookPage() {
       window.confirm("Are you sure you want to erase this book and its notes?")
     ) {
       dispatch(eraseBook(id));
-      dispatch(eraseBookNotes(id));
+      //dispatch(eraseBookNotes(id));
       navigate("/");
     } else {
       return;
@@ -22,7 +22,7 @@ export default function SingleBookPage() {
 
   const { id } = useParams();
 
-  const books = useSelector(selectBooks);
+  const books = useSelector(selectBooks).books;
 
   const book = books.filter((book) => book.id == id)[0];
 
@@ -46,7 +46,9 @@ export default function SingleBookPage() {
                 <p>{book.synopsis}</p>
                 <div className="read-checkbox">
                   <input
-                    onClick={() => dispatch(toggleRead(book.id))}
+                    onClick={() =>
+                      dispatch(toggleRead({ id: book.id, isRead: book.isRead }))
+                    }
                     type="checkbox"
                     defaultChecked={book.isRead}
                   />

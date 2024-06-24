@@ -19,11 +19,14 @@ export default function AddBookPage() {
       isRead: false,
     };
     if (newBook.title && newBook.cover && newBook.author) {
-      dispatch(addBook(newBook));
-      alert("Book created successfully!");
-      navigate("/");
-    } else {
-      alert("Please fill in all required fields");
+      dispatch(addBook(newBook)).then((response) => {
+        if (response.error) {
+          alert(response.error);
+        } else {
+          alert("Book created successfully!");
+          navigate("/");
+        }
+      });
     }
   }
 
