@@ -1,9 +1,7 @@
 package com.example.vendas;
 
 import com.example.vendas.domain.entity.Cliente;
-import com.example.vendas.domain.entity.ItemPedido;
 import com.example.vendas.domain.entity.Pedido;
-import com.example.vendas.domain.entity.Produto;
 import com.example.vendas.domain.repository.Clientes;
 import com.example.vendas.domain.repository.Pedidos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +19,7 @@ public class VendasApplication {
 	@Bean
 	public CommandLineRunner init(
 			@Autowired Clientes clientes,
-			@Autowired Pedidos pedidos
-								 ) {
+			@Autowired Pedidos pedidos) {
 		return args -> {
 			System.out.println("Salvando clientes");
 			Cliente client = new Cliente("Pablo Leite");
@@ -35,13 +32,11 @@ public class VendasApplication {
 
 			pedidos.save(p);
 
-//            Cliente cliente = clientes.findClienteFetchPedidos(client.getId());
-//            System.out.println(cliente);
-//            System.out.println(cliente.getPedidos());
+			// Cliente cliente = clientes.findClienteFetchPedidos(client.getId());
+			// System.out.println(cliente);
+			// System.out.println(cliente.getPedidos());
 
 			pedidos.findByCliente(client).forEach(System.out::println);
-
-
 
 		};
 	}
