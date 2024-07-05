@@ -10,11 +10,10 @@ O objetivo deste repositório é armazenar e organizar os desafios e exercícios
 
 1. Desafios dos Cursos
 
+   • Desafios relacionados aos conteúdos dos cursos realizados \
+   • Soluções e explicações
 
-    • Desafios relacionados aos conteúdos dos cursos realizados
-    • Soluções e explicações
+2. Exercícios Práticos
 
-2.  Exercícios Práticos
-
-• Exercícios práticos para aplicação dos conhecimentos adquiridos
-• Exemplos e práticas recomendadas
+   • Exercícios práticos para aplicação dos conhecimentos adquiridos \
+   • Exemplos e práticas recomendadas
