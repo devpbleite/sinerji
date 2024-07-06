@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\CompanyModel;
 use CodeIgniter\Controller;
+use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
@@ -35,8 +37,10 @@ abstract class BaseController extends Controller
      *
      * @var list<string>
      */
-    protected $helpers = [];
+    protected $helpers = ['form', 'app', 'number',];
 
+
+    protected $dataToView = [];
     /**
      * Be sure to declare properties for any property fetch you initialized.
      * The creation of dynamic property is deprecated in PHP 8.2.
@@ -51,8 +55,21 @@ abstract class BaseController extends Controller
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
-        // Preload any models, libraries, etc, here.
+        // Recebe a company que está cadastrada.
+        $company = model(CompanyModel::class)->getCompany();
 
-        // E.g.: $this->session = \Config\Services::session();
+        // Todos as views terão acesso a propriedades passadas por aqui.
+        $this->dataToView['title'] = $company->name ?? 'Projeto Capacitação';
+        $view = \Config\Services::renderer();
+        $view->setVar(name: 'company', value: $company);
+    }
+
+    # Verifica se o método enviado na requisição é o mesmo do permitido no controller(enviado na chamada da função).
+    protected function allowedMethod(string $method): void
+    {
+        $method =   strtolower($method);
+        if (!$this->request->is($method)) {
+            throw new PageNotFoundException("Verbo HTTP {$method} não permitido");
+        }
     }
 }
