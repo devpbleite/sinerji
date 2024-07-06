@@ -7,29 +7,35 @@ namespace App\Libraries\Mongo;
 use App\Libraries\Mongo\Basic\ActionModel;
 use MongoDB\BSON\ObjectId;
 
+/**
+ * Modelo para interação com a coleção 'cars' no MongoDB, estendendo ActionModel.
+ */
 class CarModel extends ActionModel
 {
-    // Construtor que inicializa a conexão com a coleção 'cars'.
+    /**
+     * Construtor da classe. Chama o construtor da classe pai (ActionModel) com o nome da coleção 'cars'.
+     */
     public function __construct()
     {
         parent::__construct(collectionName: 'cars');
     }
 
-    // Método para recuperar todos os carros por ID de cliente.
+    /**
+     * Obtém todos os carros associados a um cliente específico.
+     *
+     * @param string $customer_id ID do cliente no formato ObjectId do MongoDB.
+     * @return array Array de documentos BSON representando os carros do cliente.
+     */
     public function allByCustomerId(string $customer_id): array
     {
         try {
-            // Define o filtro para buscar carros pelo ID do cliente.
-            $filter = ['customer_id' => new ObjectId($customer_id)];
-            // Busca os documentos na coleção com base no filtro.
-            $cursor =  $this->collection->find($filter);
-            // Converte o cursor em um array de documentos.
-            $documents = $cursor->toArray();
-            return $documents;
+            $filter = ['customer_id' => new ObjectId($customer_id)]; // Filtra por ID do cliente convertido para ObjectId
+            $cursor =  $this->collection->find($filter); // Executa a consulta na coleção 'cars'
+            $documents = $cursor->toArray(); // Converte os documentos BSON retornados em um array PHP
+            return $documents; // Retorna o array de documentos encontrados
         } catch (\Throwable $th) {
-            // Loga a mensagem de erro e termina a execução em caso de falha.
-            log_message('error', "Erro ao recuperar registros no mongoDB {$th->getMessage()}");
-            exit('Internal Server Error');
+            log_message('error', "Erro ao recuperar registros no MongoDB: {$th->getMessage()}");
+            exit('Internal Server Error'); // Encerra a execução em caso de erro, registrando no log
         }
     }
 }

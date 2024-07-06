@@ -5,14 +5,17 @@ namespace App\Models;
 use App\Entities\Company;
 use CodeIgniter\Model;
 
+/**
+ * Modelo para interação com a tabela 'information' relacionada à empresa.
+ */
 class CompanyModel extends Model
 {
     protected $DBGroup = 'company';
 
-    protected $table            = 'information'; // Nome da tabela
+    protected $table            = 'information';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = Company::class; // Tipo do retorno
+    protected $returnType       = Company::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
@@ -21,12 +24,13 @@ class CompanyModel extends Model
         'address',
         'message',
     ];
-    // Permite ou não inserções com todos os campos vazios
     protected bool $allowEmptyInserts = false;
 
     /**
-     * Método para obter a primeira empresa da
-     * tabela ou uma nova instância de Company.
+     * Retorna a primeira empresa encontrada na tabela 'information'.
+     * Se não houver registros, retorna uma nova instância de Company vazia.
+     * 
+     * @return Company Instância de Company encontrada ou uma nova instância vazia.
      */
     public function getCompany(): Company
     {

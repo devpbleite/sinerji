@@ -2,8 +2,16 @@
 
 namespace App\Validation;
 
+/**
+ * Classe de validação para os dados do cliente.
+ */
 class CustomerValidation
 {
+    /**
+     * Retorna as regras de validação para os campos de dados do cliente.
+     * 
+     * @return array Regras de validação para os campos de dados do cliente.
+     */
     public function getRules(): array
     {
         return [
@@ -11,8 +19,8 @@ class CustomerValidation
                 'label' => 'Nome',
                 'rules' => 'required|max_length[128]',
                 'errors' => [
-                    'required' => 'Obrigatório!',
-                    'max_length' => 'Informe no máximo 128 caracteres',
+                    'required' => 'O campo :label é obrigatório.',
+                    'max_length' => 'O campo :label deve conter no máximo 128 caracteres.',
                 ]
             ],
 
@@ -20,8 +28,8 @@ class CustomerValidation
                 'label' => 'CPF',
                 'rules' => 'required|exact_length[14]',
                 'errors' => [
-                    'required' => 'Obrigatório!',
-                    'exact_length' => 'Informe exatamente 14 caracteres',
+                    'required' => 'O campo :label é obrigatório.',
+                    'exact_length' => 'O campo :label deve conter exatamente 14 caracteres.',
                 ]
             ],
 
@@ -29,8 +37,8 @@ class CustomerValidation
                 'label' => 'E-mail',
                 'rules' => 'required|max_length[128]',
                 'errors' => [
-                    'required' => 'Obrigatório!',
-                    'max_length' => 'Informe no máximo 128 caracteres',
+                    'required' => 'O campo :label é obrigatório.',
+                    'max_length' => 'O campo :label deve conter no máximo 128 caracteres.',
                 ]
             ],
 
@@ -38,8 +46,8 @@ class CustomerValidation
                 'label' => 'Telefone',
                 'rules' => 'required|max_length[20]',
                 'errors' => [
-                    'required' => 'Obrigatório!',
-                    'max_length' => 'Informe no máximo 20 caracteres',
+                    'required' => 'O campo :label é obrigatório.',
+                    'max_length' => 'O campo :label deve conter no máximo 20 caracteres.',
                 ]
             ],
         ];

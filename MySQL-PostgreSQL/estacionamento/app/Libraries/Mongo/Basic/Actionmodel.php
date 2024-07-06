@@ -8,90 +8,111 @@ use CodeIgniter\Exceptions\PageNotFoundException;
 use MongoDB\BSON\ObjectId;
 use MongoDB\Model\BSONDocument;
 
+/**
+ * Classe abstrata que fornece operações básicas de CRUD para modelos MongoDB.
+ * Estende a classe ConnectorModel que lida com a conexão MongoDB.
+ */
 abstract class ActionModel extends ConnectorModel
 {
-    // Construtor que inicializa a conexão com a coleção MongoDB especificada.
+    /**
+     * Construtor da classe. Inicializa a coleção MongoDB.
+     *
+     * @param string $collectionName Nome da coleção MongoDB.
+     */
     public function __construct(string $collectionName)
     {
         parent::__construct(collectionName: $collectionName);
     }
 
-    // Método para criar um novo documento na coleção MongoDB.
+    /**
+     * Cria um novo documento na coleção.
+     *
+     * @param array $data Dados do documento a ser inserido.
+     * @return bool Retorna verdadeiro se a inserção foi bem-sucedida.
+     */
     public function create(array $data): bool
     {
         try {
-            // Escapa os dados antes de inserir.
-            $data = esc($data);
-            // Insere o documento na coleção.
+            $data = esc($data); // Escapa os dados para evitar injeção
             $result = $this->collection->insertOne($data);
-            // Retorna true se a inserção foi bem sucedida.
             return $result->getInsertedCount() === 1;
         } catch (\Throwable $th) {
-            // Loga a mensagem de erro e termina a execução em caso de falha.
             log_message('error', "Erro ao inserir o registro no MongoDB: 
             {$th->getMessage()}");
             exit('Erro ao inserir o registro no MongoDB');
         }
     }
-    // Método para recuperar todos os documentos da coleção MongoDB.
+
+    /**
+     * Recupera todos os documentos da coleção.
+     *
+     * @return array Retorna um array de documentos.
+     */
     public function all(): array
     {
         try {
-            // Busca todos os documentos na coleção.
             $cursor = $this->collection->find([]);
-            // Converte o cursor em um array de documentos.
             $documents = $cursor->toArray();
 
             return $documents;
         } catch (\Throwable $th) {
-            // Loga a mensagem de erro e termina a execução em caso de falha.
             log_message('error', "Erro ao recuperar os registros no MongoDB: 
             {$th->getMessage()}");
-            exit('Erro ao recuperar registros de no MongoDB');
+            exit('Erro ao recuperar registros no MongoDB');
         }
     }
-    // Método para encontrar um documento pelo ID ou lançar uma exceção se não for encontrado.
+
+    /**
+     * Recupera um documento pelo seu ID ou lança uma exceção se não for encontrado.
+     *
+     * @param string $id ID do documento a ser recuperado.
+     * @return BSONDocument Retorna o documento encontrado.
+     * @throws PageNotFoundException Se o documento não for encontrado.
+     */
     public function findOrFail(string $id): BSONDocument
     {
         try {
-            // Busca o documento na coleção pelo ID
             $document = $this->collection->findOne(['_id' => new ObjectId($id)]);
-            // Retorna o documento encontrado ou lança uma exceção se não for encontrado.
             return $document ?? throw new PageNotFoundException("Registro não localizado id: {$id}");
         } catch (\Throwable $th) {
-            // Loga a mensagem de erro e termina a execução em caso de falha.
             log_message('error', "Erro ao recuperar o registro no MongoDB: 
             {$th->getMessage()}");
-            exit('Erro ao recuperar registro de no MongoDB');
+            exit('Erro ao recuperar registro no MongoDB');
         }
     }
-    // Método para atualizar um documento na coleção MongoDB pelo ID.
+
+    /**
+     * Atualiza um documento na coleção.
+     *
+     * @param string $id ID do documento a ser atualizado.
+     * @param array $data Dados a serem atualizados.
+     * @return bool Retorna verdadeiro se a atualização foi bem-sucedida.
+     */
     public function update(string $id, array $data): bool
     {
         try {
-            // Escapa os dados antes de atualizar.
-            $data = esc($data);
-            // Atualiza o documento na coleção.
+            $data = esc($data); // Escapa os dados para evitar injeção
             $result = $this->collection->updateOne(['_id' => new ObjectId($id)], ['$set' => $data]);
-            // Retorna true se a atualização foi bem sucedida.
             return $result->getModifiedCount() ? true : false;
         } catch (\Throwable $th) {
-            // Loga a mensagem de erro e termina a execução em caso de falha.
             log_message('error', "Erro ao atualizar o registro no MongoDB: 
             {$th->getMessage()}");
             exit('Erro ao atualizar o registro no MongoDB');
         }
     }
-    // Método para deletar um documento na coleção MongoDB pelo ID.
+
+    /**
+     * Deleta um documento da coleção.
+     *
+     * @param string $id ID do documento a ser deletado.
+     * @return bool Retorna verdadeiro se a deleção foi bem-sucedida.
+     */
     public function delete(string $id): bool
     {
         try {
-            // Deleta o documento na coleção pelo ID.
             $result = $this->collection->deleteOne(['_id' => new ObjectId($id)]);
-            // Retorna true se a deleção foi bem sucedida.
             return $result->getDeletedCount() === 1;
         } catch (\Throwable $th) {
-            // Loga a mensagem de erro e termina a execução em caso de falha.
             log_message('error', "Erro ao deletar o registro no MongoDB: 
             {$th->getMessage()}");
             exit('Erro ao deletar o registro no MongoDB');

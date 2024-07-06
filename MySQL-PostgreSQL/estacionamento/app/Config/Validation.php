@@ -35,7 +35,7 @@ class Validation extends BaseConfig
      */
     public array $templates = [
         'list'   => 'CodeIgniter\Validation\Views\list',
-        'single' => 'CodeIgniter\Validation\Views\single',
+        'single' => 'App\Views\Layouts\Validation\Single.php', //Nosso template
     ];
 
     // --------------------------------------------------------------------

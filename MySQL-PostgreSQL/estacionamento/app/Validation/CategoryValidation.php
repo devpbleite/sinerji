@@ -2,8 +2,16 @@
 
 namespace App\Validation;
 
+/**
+ * Classe de validação para as categorias.
+ */
 class CategoryValidation
 {
+    /**
+     * Retorna as regras de validação para os campos de categoria.
+     * 
+     * @return array Regras de validação para os campos de categoria.
+     */
     public function getRules(): array
     {
         return [
@@ -11,8 +19,8 @@ class CategoryValidation
                 'label' => 'Nome',
                 'rules' => 'required|max_length[128]',
                 'errors' => [
-                    'required' => 'Obrigatório!',
-                    'max_length' => 'Informe no máximo 128 caracteres',
+                    'required' => 'O campo :label é obrigatório.',
+                    'max_length' => 'O campo :label deve conter no máximo 128 caracteres.',
                 ]
             ],
 
@@ -20,8 +28,8 @@ class CategoryValidation
                 'label' => 'Preço por hora',
                 'rules' => 'required|is_natural_no_zero',
                 'errors' => [
-                    'required' => 'Obrigatório!',
-                    'is_natural_no_zero' => 'Informe um valor maior que zero',
+                    'required' => 'O campo :label é obrigatório.',
+                    'is_natural_no_zero' => 'Informe um valor maior que zero para o campo :label.',
                 ]
             ],
 
@@ -29,8 +37,8 @@ class CategoryValidation
                 'label' => 'Preço por dia',
                 'rules' => 'required|is_natural_no_zero',
                 'errors' => [
-                    'required' => 'Obrigatório!',
-                    'is_natural_no_zero' => 'Informe um valor maior que zero',
+                    'required' => 'O campo :label é obrigatório.',
+                    'is_natural_no_zero' => 'Informe um valor maior que zero para o campo :label.',
                 ]
             ],
 
@@ -38,8 +46,8 @@ class CategoryValidation
                 'label' => 'Preço por mês',
                 'rules' => 'required|is_natural_no_zero',
                 'errors' => [
-                    'required' => 'Obrigatório!',
-                    'is_natural_no_zero' => 'Informe um valor maior que zero',
+                    'required' => 'O campo :label é obrigatório.',
+                    'is_natural_no_zero' => 'Informe um valor maior que zero para o campo :label.',
                 ]
             ],
 
@@ -47,11 +55,10 @@ class CategoryValidation
                 'label' => 'Número de vagas',
                 'rules' => 'required|is_natural_no_zero',
                 'errors' => [
-                    'required' => 'Obrigatório!',
-                    'is_natural_no_zero' => 'Informe um valor maior que zero',
+                    'required' => 'O campo :label é obrigatório.',
+                    'is_natural_no_zero' => 'Informe um valor maior que zero para o campo :label.',
                 ]
             ],
-
         ];
     }
 }
